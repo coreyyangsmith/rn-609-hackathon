@@ -81,7 +81,7 @@ export default function Page() {
         </Pressable>
       </Link>
 
-      <Link href="pat-meditations" asChild>
+      <Link href="hcp-meditations" asChild>
         <Pressable>
           <Text style={{ color: "blue" }}>Guided Meditations</Text>
         </Pressable>
