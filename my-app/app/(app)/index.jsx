@@ -95,6 +95,12 @@ export default function Page() {
 
       <Text style={{ color: "red" }}>SHS Links</Text>
 
+      <Link href="shs-menu" asChild>
+        <Pressable>
+          <Text style={{ color: "blue" }}>Menu</Text>
+        </Pressable>
+      </Link>
+
       <Link href="hcp-meditations" asChild>
         <Pressable>
           <Text style={{ color: "blue" }}>Guided Meditations</Text>
