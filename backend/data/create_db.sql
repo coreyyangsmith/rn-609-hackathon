@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS "PATIENT" (
     "id"    INTEGER,
     "mrn"    INTEGER,
     "name"    TEXT,
-    PRIMARY KEY("id" AUTOINCREMENT)
+    PRIMARY KEY("id" PRIMARY KEY)
 );
 
 DROP TABLE IF EXISTS "USER";
@@ -33,11 +33,13 @@ CREATE TABLE IF NOT EXISTS "USER" (
 
 DROP TABLE IF EXISTS "QUESTIONNAIRE";
 CREATE TABLE IF NOT EXISTS "QUESTIONNAIRE" (
-    "id"    INTEGER
+    "id"    INTEGER,
+    "mrn" INTEGER,
     "q1"    TEXT,
     "q2"    TEXT,
     "q3"    TEXT,
     PRIMARY KEY("id" AUTOINCREMENT)
+    FOREIGN KEY("mrn" PRIMARY KEY) REFERENCES PATIENT("mrn")
 )
 
 -- Inserting  fake data for testing

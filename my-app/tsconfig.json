@@ -14,9 +14,10 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "app/(auth)/register.jsx",
-    "app/(auth)/login.jsx",
+    "app/(auth)/index.jsx",
     "app/(app)/(patient)/questionnaire/_layout.jsx",
     "app/(app)/(patient)/questionnaire/index.jsx",
-    "app/(app)/index.jsx"
+    "app/(app)/index.jsx",
+    "app/_layout.jsx"
   ]
 }

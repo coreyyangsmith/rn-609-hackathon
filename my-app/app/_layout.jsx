@@ -1,7 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Slot, Stack } from 'expo-router';
+import { Slot, Stack, useNavigation } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
@@ -10,6 +10,7 @@ import { AuthProvider } from '@/context/auth';
 import { Pressable, Text, View } from 'react-native';
 
 import { Link } from 'expo-router';
+import { Appbar, Button } from 'react-native-paper';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,34 +51,19 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-
+  const navigation = useNavigation()
   return (
     // <AuthProvider>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Appbar.Header>
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
+      </Appbar.Header>
+
       <Stack>
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(app)" />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(app)" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
     // </AuthProvider>
-
-
-
-    // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', width: '100', height: '100' }}>
-    //   <Text>Home Page</Text>
-
-    //   <Link href="/(auth)/login" asChild>
-    //     <Pressable>
-    //       <Text>HCP - Viewing Patient Questionnaire</Text>
-    //     </Pressable>
-    //   </Link>
-
-    //   <Link href="" asChild>
-    //     <Pressable>
-    //       <Text>Patient - Viewing Patient Questionnaire</Text>
-    //     </Pressable>
-    //   </Link>
-
-    // </View>
   );
 }
