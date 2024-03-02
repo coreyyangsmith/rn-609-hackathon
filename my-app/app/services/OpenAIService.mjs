@@ -3,13 +3,13 @@ import OpenAI from 'openai';
 
 dotenv.config();
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
-
-const openai = new OpenAI({apiKey: OPENAI_API_KEY});
-
 async function callChatGPT(promptText) {
+    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    console.log('Using OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
+    console.log('Sending promptText:', promptText);
+
+    const openai = new OpenAI({apiKey: OPENAI_API_KEY});
+
     const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo-0125',
         messages: [{
