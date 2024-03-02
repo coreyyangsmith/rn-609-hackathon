@@ -22,8 +22,8 @@ app.use(express.json());
 Database.connect();
 
 // Authentication routes
-app.post("/register/user", authController.register);
-app.post("/login/user", authController.login);
+app.post("/register", authController.register);
+app.post("/login", authController.login);
 app.post("/2factor", authController.verifyCode);
 
 // Data Routes

@@ -32,6 +32,7 @@ export const register = withDatabase(
 export const login = withDatabase(
     asyncHandler(async (req, res, next) => {
         const { username, password } = req.body;
+        console.log(username, password);
 
         // Query database for user with the given username
         const searchResult = await req.db.queryOne('SELECT * FROM USER WHERE username = ?', [username]);
