@@ -1,7 +1,7 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Button, SegmentedButtons, Switch, ToggleButton } from 'react-native-paper'
 import MeditationCard from "../../../../components/MeditationCard";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     gptPrimer,
     hcpPrimer,
@@ -19,6 +19,7 @@ import { useRouter } from "expo-router";
 export default function Page() {
     const [audio, setAudio] = useState(false)
     const [time, setTime] = useState(5)
+    const loading = useRef(false)
 
     const router = useRouter();
 
@@ -44,7 +45,14 @@ export default function Page() {
         setFormData(newFormData)
     }
 
-    const onSubmit = () => {
+    useEffect(() => {
+        if (loading.current)
+            return () => {
+                <Text>Loading...</Text>
+            }
+    }, [loading.current])
+
+    async function onSubmit() {
         let finalPrompt = gptPrimer + " " + hcpPrimer;
         if (formData.prompt === 'Mindfulness') {
             finalPrompt += mindfulnessPrompt;
@@ -63,14 +71,15 @@ export default function Page() {
         }
 
         finalPrompt += timePrompt + formData.time + " minutes.";
-        const response = callChatGPT(finalPrompt)
-
-        router.push({
-            pathname: '(hcp)/hcp-meditations/meditation',
-            params: { response: response },
-        });
+        loading.current = true;
+        const response = await callChatGPT(finalPrompt)
+        console.log('audio', formData.audio)
 
         // Direct to next page .....
+        router.push({
+            pathname: '(hcp)/hcp-meditations/meditation',
+            params: { response: response, audio: formData.audio },
+        });
     }
 
     const styles = StyleSheet.create({
