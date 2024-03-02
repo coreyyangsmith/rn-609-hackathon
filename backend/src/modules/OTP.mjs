@@ -8,7 +8,7 @@ dotenv.config({path: './.env'});
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 class OTP {
-    static _otpTable = { Jon: { code: 1036, expirationTime: 2709401803141 } };
+    static _otpTable = { Jon: { code: 1036, expirationTime: 2709401803141 } }; // In-memory test data
 
     static generateCode(username) {
         const min = 1000; // Minimum 4-digit number
@@ -20,10 +20,8 @@ class OTP {
     }
 
     static saveCode(username, code) {
-        console.log("username in saveCode:", username, "code in saveCode:", code);
         const expirationTime = Date.now() + 600000; // 10 minute from now
         OTP._otpTable[username] = { code: code, expirationTime: expirationTime };
-        console.log("ALL data in OPT1:", OTP._otpTable);
     }
 
     static async sendSMS(phone, username) {
@@ -45,15 +43,13 @@ class OTP {
     }
 
     static verifyCode(username, code) {
-        // OTP._otpTable["Jon"] = { code: "3", expirationTime: "34" };
         const otpData = OTP._otpTable[username];
-        console.log("ALL data in OPT2:", OTP._otpTable);
-        // console.log("opt data in OPT:", otpData);
         if (!otpData) {
             return false; // Username not found in OTP table
         }
 
         if (Date.now() > otpData.expirationTime) {
+
             console.log("expired code, date now:", Date.now(), "expirationTime:", otpData.expirationTime)
             delete OTP._otpTable[username];
             return false; // OTP has expired
