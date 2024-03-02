@@ -31,6 +31,15 @@ CREATE TABLE IF NOT EXISTS "USER" (
     PRIMARY KEY("id" AUTOINCREMENT)
 );
 
+DROP TABLE IF EXISTS "QUESTIONNAIRE";
+CREATE TABLE IF NOT EXISTS "QUESTIONNAIRE" (
+    "id"    INTEGER
+    "q1"    TEXT,
+    "q2"    TEXT,
+    "q3"    TEXT,
+    PRIMARY KEY("id" AUTOINCREMENT)
+)
+
 -- Inserting  fake data for testing
 INSERT INTO "USER" ("username", "password", "phone") VALUES ('Jon', '$2b$10$Q/UhyQB/nL46kxBAA10lyunFvClSdtj9MGPMcSncixlWRBU29YitK', "+13068507554");
 

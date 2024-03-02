@@ -6,6 +6,7 @@ import cors from "cors";
 import Database from "./modules/Database.mjs";
 import * as authController from "./controllers/authController.mjs";
 import * as userController from "./controllers/userController.mjs";
+import * as questionnaireController from "./controllers/questionnaireController.mjs";
 import { notFound } from "./middleware/errorHandler.mjs";
 
 // Load environment variables
@@ -27,6 +28,7 @@ app.post("/2factor", authController.verifyCode);
 
 // Data Routes
 app.get("/getUsers", userController.getUsers);
+app.post("/setQuestions", questionnaireController.setQuestions);
 
 // Not found route
 app.use(notFound);
