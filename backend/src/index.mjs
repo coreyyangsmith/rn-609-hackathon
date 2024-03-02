@@ -29,6 +29,7 @@ app.post("/2factor", authController.verifyCode);
 // Data Routes
 app.get("/getUsers", userController.getUsers);
 app.post("/setQuestions", questionnaireController.setQuestions);
+app.get("/getQuestions", questionnaireController.getQuestions)
 
 // Not found route
 app.use(notFound);
