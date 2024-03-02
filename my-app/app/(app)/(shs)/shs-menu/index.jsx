@@ -4,19 +4,8 @@ import { Link } from "expo-router";
 export default function Page() {
   return (
     <View style={styles.container}>
-      <StyledLink
-        text="Pre-Family Meeting Questionnaire"
-        route="pat-questionnaire"
-      />
-      <StyledLink
-        text="Previous Family Meeting Recordings"
-        route="pat-recordings"
-      />
-      <StyledLink text="Guided Meditations" route="pat-meditations" />
-      <StyledLink
-        text="Resources for Practical Matters"
-        route="pat-resources"
-      />
+      <StyledLink text="SHS Consultations" route="shs-consultation" />
+      <StyledLink text="Guided Meditations" route="hcp-meditations" />
     </View>
   );
 }

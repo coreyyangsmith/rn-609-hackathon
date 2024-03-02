@@ -92,6 +92,26 @@ export default function Page() {
           <Text style={{ color: "blue" }}>Resources for Practical Matters</Text>
         </Pressable>
       </Link>
+
+      <Text style={{ color: "red" }}>SHS Links</Text>
+
+      <Link href="shs-menu" asChild>
+        <Pressable>
+          <Text style={{ color: "blue" }}>Menu</Text>
+        </Pressable>
+      </Link>
+
+      <Link href="hcp-meditations" asChild>
+        <Pressable>
+          <Text style={{ color: "blue" }}>Guided Meditations</Text>
+        </Pressable>
+      </Link>
+
+      <Link href="shs-consultation" asChild>
+        <Pressable>
+          <Text style={{ color: "blue" }}>Consult Spiritual Health</Text>
+        </Pressable>
+      </Link>
     </>
   );
 }
