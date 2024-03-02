@@ -30,7 +30,9 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
             value={{
                 user: user,
                 signIn: () => {
+                    console.log('Sign In')
                     setUser("TestUser")
+                    console.log(user)
                 },
                 signOut: () => {
                     setUser("");
