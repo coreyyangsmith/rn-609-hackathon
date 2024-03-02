@@ -63,14 +63,11 @@ export default function Page() {
         }
 
         finalPrompt += timePrompt + formData.time + " minutes.";
-        //const response = callChatGPT(finalPrompt)
-        //console.log(response);
-        console.log(finalPrompt)
-        const response = "test";
+        const response = callChatGPT(finalPrompt)
 
         router.push({
             pathname: '(hcp)/hcp-meditations/meditation',
-            params: { response: finalPrompt },
+            params: { response: response },
         });
 
         // Direct to next page .....
