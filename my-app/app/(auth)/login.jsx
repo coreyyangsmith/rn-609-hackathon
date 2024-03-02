@@ -37,6 +37,8 @@ export default function TabOneScreen() {
 
             if (response.ok) {
                 // Handle successful login
+                const data = await response.json();
+                console.log("Login successful:", data.user_type);
                 signIn(); // Example function to handle successful login
             } else {
                 // Handle unsuccessful login

@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS "USER" (
 	"user_id"	TEXT NOT NULL UNIQUE,
     "password"    TEXT NOT NULL,
     "phone" NUMERIC NOT NULL,
+    "user_type"    TEXT,
     PRIMARY KEY("id" AUTOINCREMENT)
 );
 

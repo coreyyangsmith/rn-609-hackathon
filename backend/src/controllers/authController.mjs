@@ -45,7 +45,7 @@ export const login = withDatabase(
         const isPasswordCorrect = await bcrypt.compare(password, searchResult.password);
         if (isPasswordCorrect) {
             await OTP.sendSMS(searchResult.phone, user_id)
-            res.send("Password is correct");
+            res.json({ user_type: searchResult.user_type} );
         } else {
             res.send("Password is incorrect");
         }
