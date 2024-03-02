@@ -12,15 +12,15 @@ export default function TabOneScreen() {
   const { signIn } = useAuth();
 
   const [formData, setFormData] = useState({
-    username: "",
+    user_id: "",
     password: "",
   });
 
-  const [usernameData, setUsernameData] = useState("");
+  const [user_idData, setuser_idData] = useState("");
   const [passwordData, setPasswordData] = useState("");
 
   const handleFormDataChange = (field, text) => {
-    if (field === "username") setUsernameData(text);
+    if (field === "user_id") setuser_idData(text);
     if (field === "password") setPasswordData(text);
   };
 
@@ -58,11 +58,11 @@ export default function TabOneScreen() {
 
       <TextInput
         style={{ width: "80%" }}
-        label="Username"
+        label="user_id"
         mode="outlined"
-        value={usernameData}
+        value={user_idData}
         onChangeText={(text) => {
-          handleFormDataChange("username", text);
+          handleFormDataChange("user_id", text);
         }}
       />
       <View style={{ height: 10 }} />
