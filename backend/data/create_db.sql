@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS "USER" (
     "user_name"    TEXT,
 	"user_id"	TEXT NOT NULL UNIQUE,
     "password"    TEXT NOT NULL,
+    "phone" NUMERIC NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT)
 );
 DROP TABLE IF EXISTS "QUESTIONNAIRE";
@@ -55,7 +56,7 @@ CREATE TABLE IF NOT EXISTS "QUESTIONNAIRE" (
 )
 
 -- Inserting  fake data for testing
-INSERT INTO "USER" ("user_id", "password") VALUES ('Jon', '$2b$10$Q/UhyQB/nL46kxBAA10lyunFvClSdtj9MGPMcSncixlWRBU29YitK');
-INSERT INTO "USER" ("user_id", "password") VALUES ('Tom', '$2b$10$Q/UhyQB/nL46kxBAA10lyunFvClSdtj9MGPMcSncixlWRBU29YitK');
+INSERT INTO "USER" ("user_id", "password", "phone") VALUES ('Jon', '$2b$10$Q/UhyQB/nL46kxBAA10lyunFvClSdtj9MGPMcSncixlWRBU29YitK', "+13068507554");
+INSERT INTO "USER" ("user_id", "password", "phone") VALUES ('Tom', '$2b$10$Q/UhyQB/nL46kxBAA10lyunFvClSdtj9MGPMcSncixlWRBU29YitK', "+13068507555");
 
 COMMIT;
