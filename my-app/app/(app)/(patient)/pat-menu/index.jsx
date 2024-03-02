@@ -5,13 +5,18 @@ export default function Page() {
   return (
     <View style={styles.container}>
       <StyledLink
-        text="Family Meeting Questionnaires"
-        route="hcp-questionnaire"
+        text="Pre-Family Meeting Questionnaire"
+        route="pat-questionnaire"
       />
-      <StyledLink text="Family Meeting Recorder" route="hcp-recordings" />
-      <StyledLink text="Guided Meditations" route="hcp-meditations" />
-      <StyledLink text="Consult Spiritual Health" route="hcp-consultation" />
-      <StyledLink text="Resources for Professionals" route="hcp-resources" />
+      <StyledLink
+        text="Previous Family Meeting Recordings"
+        route="pat-recordings"
+      />
+      <StyledLink text="Guided Meditations" route="pat-meditations" />
+      <StyledLink
+        text="Resources for Practical Matters"
+        route="pat-resources"
+      />
     </View>
   );
 }
@@ -33,11 +38,11 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   button: {
-    backgroundColor: "#007bff", 
+    backgroundColor: "#007bff",
     padding: 10,
     marginVertical: 10,
     borderRadius: 5,
-    width: 250, 
+    width: 250,
   },
   buttonText: {
     color: "white",

@@ -59,6 +59,12 @@ export default function Page() {
       {/* Patient Links */}
       <Text style={{ color: "red" }}>Patient Links</Text>
 
+      <Link href="pat-menu" asChild>
+        <Pressable>
+          <Text style={{ color: "blue" }}>Menu</Text>
+        </Pressable>
+      </Link>
+
       <Link href="pat-questionnaire" asChild>
         <Pressable>
           <Text style={{ color: "blue" }}>
