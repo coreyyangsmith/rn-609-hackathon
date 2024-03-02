@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Button } from 'react-native-paper'
 import QuestionCard from "../../../../components/QuestionCard";
 import { useState } from "react";
+import { API_KEY } from '@env';
 
 export default function Page() {
     const [formData, setFormData] = useState({
@@ -46,7 +47,6 @@ export default function Page() {
                     Submit
                 </Button>
             </ScrollView>
-
         </View >
     );
 }
