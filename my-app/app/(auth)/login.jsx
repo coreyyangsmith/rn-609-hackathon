@@ -25,13 +25,14 @@ export default function TabOneScreen() {
   };
 
     const handleSignIn = async () => {
+        console.log("Signing in with:", user_idData, passwordData);
         try {
             const response = await fetch("http://localhost:3001/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username: usernameData, password: passwordData }),
+                body: JSON.stringify({ user_id: user_idData, password: passwordData }),
             });
 
             if (response.ok) {
