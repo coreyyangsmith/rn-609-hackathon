@@ -1,16 +1,20 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
+import twilio from "twilio";
 
 // Custom modules, controllers and middleware imports
 import Database from "./modules/Database.mjs";
+import * as authController from "./controllers/authController.mjs";
 import * as userController from "./controllers/userController.mjs";
 import { notFound } from "./middleware/errorHandler.mjs";
 
 // Load environment variables
-dotenv.config({path: './config.env'});
+dotenv.config({path: './.env'});
 const port = process.env.PORT || 3001;
+
+// Twilio configuration
+const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 // Initialize and configure the server
 const app = express();
@@ -20,10 +24,30 @@ app.use(express.json());
 // Create database connection
 Database.connect();
 
-// Routes
+// Authentication routes
+app.post("/user/register", authController.register);
+app.post("/user/login", authController.login);
+// Route handler to send SMS
+app.post('/send-sms', async (req, res) => {
+    const { to, body } = req.body;
+
+    try {
+        const message = await client.messages.create({
+            body: body,
+            from: process.env.TWILIO_PHONE_NUMBER, // Use your Twilio phone number
+            to: to
+        });
+
+        console.log('SMS message sent:', message.sid);
+        res.json({ success: true, message: 'SMS message sent successfully' });
+    } catch (error) {
+        console.error('Error sending SMS:', error);
+        res.status(500).json({ success: false, message: 'Failed to send SMS' });
+    }
+});
+
+// Data Routes
 app.get("/getUsers", userController.getUsers);
-app.post("/register", userController.register);
-app.post("/login", userController.login);
 
 // Not found route
 app.use(notFound);
