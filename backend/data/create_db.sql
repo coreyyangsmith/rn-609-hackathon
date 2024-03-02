@@ -1,4 +1,4 @@
--- Command to recreate _db: sqlite3 data._db < create_db.sql
+-- Command to recreate _db: sqlite3 data.db < create_db.sql
 
 BEGIN TRANSACTION;
 
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS "PATIENT" (
 DROP TABLE IF EXISTS "USER";
 CREATE TABLE IF NOT EXISTS "USER" (
     "id"    INTEGER,
-    "name"    TEXT NOT NULL,
+	"username"	TEXT NOT NULL UNIQUE,
     "password"    TEXT NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT)
 );

@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 
+
 // Custom modules, controllers and middleware imports
 import Database from "./modules/Database.mjs";
 import * as userController from "./controllers/userController.mjs";
@@ -21,6 +22,8 @@ Database.connect();
 
 // Routes
 app.get("/getUsers", userController.getUsers);
+app.post("/register", userController.register);
+app.post("/login", userController.login);
 
 // Not found route
 app.use(notFound);
