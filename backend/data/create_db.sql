@@ -1,4 +1,4 @@
--- Command to recreate _db: sqlite3 data._db < create_db.sql
+-- Command to recreate _db: sqlite3 data.db < create_db.sql
 
 BEGIN TRANSACTION;
 
@@ -25,12 +25,13 @@ CREATE TABLE IF NOT EXISTS "PATIENT" (
 DROP TABLE IF EXISTS "USER";
 CREATE TABLE IF NOT EXISTS "USER" (
     "id"    INTEGER,
-    "name"    TEXT NOT NULL,
+	"username"	TEXT NOT NULL UNIQUE,
     "password"    TEXT NOT NULL,
+    "phone"	NUMERIC NOT NULL,
     PRIMARY KEY("id" AUTOINCREMENT)
 );
 
 -- Inserting  fake data for testing
-INSERT INTO "USER" ("name", "password") VALUES ('fake', 'password123');
+INSERT INTO "USER" ("username", "password", "phone") VALUES ('Jon', '$2b$10$Q/UhyQB/nL46kxBAA10lyunFvClSdtj9MGPMcSncixlWRBU29YitK', "+13068507554");
 
 COMMIT;

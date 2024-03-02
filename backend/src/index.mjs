@@ -1,31 +1,38 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
-// Importing custom modules, controllers and middleware
+// Custom modules, controllers and middleware imports
 import Database from "./modules/Database.mjs";
+import * as authController from "./controllers/authController.mjs";
 import * as userController from "./controllers/userController.mjs";
 import { notFound } from "./middleware/errorHandler.mjs";
 
-// Load environment variables from config.env file
-dotenv.config({ path: './config.env' });
-const port = process.env.PORT || 3000;
+// Load environment variables
+dotenv.config({path: './.env'});
+const port = process.env.PORT || 3001;
 
+// Initialize and configure the server
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 // Create database connection
 Database.connect();
 
-// Routes
-app.get("/", (req, res) => { res.send("Welcome to the backend server"); });
+// Authentication routes
+app.post("/register/user", authController.register);
+app.post("/login/user", authController.login);
+app.post("/2factor", authController.verifyCode);
+
+// Data Routes
 app.get("/getUsers", userController.getUsers);
 
 // Not found route
 app.use(notFound);
 
 // Start the server
-const server =app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Now listening on port ${port}`);
 });
 
