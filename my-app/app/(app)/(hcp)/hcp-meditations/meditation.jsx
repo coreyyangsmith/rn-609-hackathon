@@ -3,14 +3,16 @@ import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native';
 import { Button, Surface, Text } from 'react-native-paper'
 import { Audio } from 'expo-av'
+import { callXILabs } from '../../../services/XILabsService.mjs'
 
 const meditation = () => {
     const params = useLocalSearchParams();
     const { response, audio } = params;
 
-    const playAudio = async () => {
-        console.log('playing audio')
-
+    async function playAudio() {
+        const { sound } = await Audio.Sound.createAsync(callXILabs(response));
+        console.log('Playing Sound');
+        await sound.playAsync();
     }
     const styles = StyleSheet.create({
         container: {
