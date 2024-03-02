@@ -5,6 +5,20 @@ export default function Page() {
     return (
         <>
             <Text>MAIN APP PAGE</Text>
+            <Text style={{ color: 'red' }}>Main Navigation</Text>
+
+            <Link href="login" asChild>
+                <Pressable>
+                    <Text style={{ color: 'blue' }}>Login</Text>
+                </Pressable>
+            </Link>
+            <Link href="register" asChild>
+                <Pressable>
+                    <Text style={{ color: 'blue' }}>Register</Text>
+                </Pressable>
+            </Link>
+
+
             <Text style={{ color: 'red' }}>HCP Links</Text>
 
             <Link href="hcp-questionnaire" asChild>

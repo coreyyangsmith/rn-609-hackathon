@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router"
 
-const TabsLayout = () => {
+const _layout = () => {
     return (
         <Tabs>
             <Tabs.Screen name="home" />

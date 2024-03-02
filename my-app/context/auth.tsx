@@ -2,7 +2,7 @@ import { useRouter, useSegments } from 'expo-router';
 import * as React from 'react';
 import { useState, useEffect, useContext, createContext } from 'react';
 
-const AuthContext = createContext<any>(null);
+const AuthContext = createContext<any>('');
 
 export function useAuth() {
     return useContext(AuthContext);

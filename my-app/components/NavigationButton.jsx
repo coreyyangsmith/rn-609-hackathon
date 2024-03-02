@@ -1,18 +1,20 @@
-import { Link } from 'expo-router';
+// Imports
 import * as React from 'react';
 import { Button } from 'react-native-paper';
+import * as Linking from 'expo-linking';
+
+// Parameters
 
 const NavigationButton = (props) => (
-    <Link href={props.route} asChild>
-        <Button
-            style={{ padding: '4px' }}
-            icon={props.icon}
-            mode="contained"
-            onPress={() => console.log('Pressed')}
-        >
-            {props.text}
-        </Button>
-    </Link>
+    <Button
+        style={{ width: 325 }}
+        icon={props.icon}
+        mode="elevated"
+        compact={true}
+        onPress={() => Linking.openURL(`${props.route}`)}
+    >
+        {props.text}
+    </Button>
 );
 
 export default NavigationButton;
