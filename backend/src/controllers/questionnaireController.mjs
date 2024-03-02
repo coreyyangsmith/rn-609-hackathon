@@ -11,3 +11,15 @@ export const setQuestions = withDatabase(
         });
     })
 )
+
+export const getQuestions = withDatabase(
+    asyncHandler(async (req, res, next) => {
+        const rows = await req.db.queryAll('SELECT * FROM QUESTIONNAIRE WHERE mrn = ?', [mrn]);
+
+        res.json({
+            message: "success",
+            data: rows
+        });
+    })
+)
+
