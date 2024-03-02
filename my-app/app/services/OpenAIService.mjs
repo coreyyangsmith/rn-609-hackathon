@@ -1,11 +1,11 @@
 import OpenAI from 'openai';
 
 async function callChatGPT(promptText) {
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-  console.log('Using OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
+  const apiKey = process.env.OPENAI_API_KEY;
+  console.log('Using OPENAI_API_KEY:', apiKey);
   console.log('Sending promptText:', promptText);
 
-  const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
+  const openai = new OpenAI({ apiKey: apiKey });
 
   const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo-0125',
