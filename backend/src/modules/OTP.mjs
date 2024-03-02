@@ -10,22 +10,22 @@ const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TO
 class OTP {
     static _otpTable = { Jon: { code: 1036, expirationTime: 2709401803141 } }; // In-memory test data
 
-    static generateCode(username) {
+    static generateCode(user_id) {
         const min = 1000; // Minimum 4-digit number
         const max = 9999; // Maximum 4-digit number
 
         const code = Math.floor(Math.random() * (max - min + 1)) + min;
-        OTP.saveCode(username, code);
+        OTP.saveCode(user_id, code);
         return code;
     }
 
-    static saveCode(username, code) {
+    static saveCode(user_id, code) {
         const expirationTime = Date.now() + 600000; // 10 minute from now
-        OTP._otpTable[username] = { code: code, expirationTime: expirationTime };
+        OTP._otpTable[user_id] = { code: code, expirationTime: expirationTime };
     }
 
-    static async sendSMS(phone, username) {
-        const otp = OTP.generateCode(username);
+    static async sendSMS(phone, user_id) {
+        const otp = OTP.generateCode(user_id);
 
         try {
             const message = await client.messages.create({
@@ -42,16 +42,16 @@ class OTP {
         }
     }
 
-    static verifyCode(username, code) {
-        const otpData = OTP._otpTable[username];
+    static verifyCode(user_id, code) {
+        const otpData = OTP._otpTable[user_id];
         if (!otpData) {
-            return false; // Username not found in OTP table
+            return false; // user_id not found in OTP table
         }
 
         if (Date.now() > otpData.expirationTime) {
 
             console.log("expired code, date now:", Date.now(), "expirationTime:", otpData.expirationTime)
-            delete OTP._otpTable[username];
+            delete OTP._otpTable[user_id];
             return false; // OTP has expired
         }
 
@@ -60,7 +60,7 @@ class OTP {
             return false; // Provided code doesn't match stored code
         }
 
-        delete OTP._otpTable[username]; // Remove the OTP after successful verification
+        delete OTP._otpTable[user_id]; // Remove the OTP after successful verification
         return true;
     }
 }
