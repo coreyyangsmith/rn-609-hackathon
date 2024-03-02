@@ -4,10 +4,7 @@ import { Text, View } from '@/components/Themed';
 import { useAuth } from '@/context/auth';
 import LabelInputContainer from '../../components/LabelInputContainer';
 import axios from 'axios';
-
-
-
-
+import { useState } from 'react';
 
 export default function TabOneScreen() {
     const [userData, setUserData] = useState({
@@ -16,9 +13,9 @@ export default function TabOneScreen() {
         user_name: '',
         user_ID: '',
         password: '',
-        password_confirm:'',
+        password_confirm: '',
     });
-    
+
     //user_password2 = '';
 
     const handleInputChange = (name, value) => {
@@ -33,12 +30,12 @@ export default function TabOneScreen() {
         print(userData)
         const apiURL = 'http://localhost:3001/register';
         axios.post(apiURL, userData)
-        .then(response => {
-            console.log("Account created Successfully", response.data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(response => {
+                console.log("Account created Successfully", response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
     return (
         <View style={styles.container}>

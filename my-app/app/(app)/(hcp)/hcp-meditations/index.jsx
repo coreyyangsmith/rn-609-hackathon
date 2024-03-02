@@ -2,10 +2,25 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Button, SegmentedButtons, Switch, ToggleButton } from 'react-native-paper'
 import MeditationCard from "../../../../components/MeditationCard";
 import { useState } from "react";
+import {
+    gptPrimer,
+    hcpPrimer,
+    mindfulnessPrompt,
+    stressReductionPrompt,
+    anxietyReductionPrompt,
+    compassionFatiguePrompt,
+    resiliencePrompt,
+    timePrompt,
+} from "../../../../utils/prompts";
+
+import { callChatGPT } from "../../../services/OpenAIService";
+import { useRouter } from "expo-router";
 
 export default function Page() {
     const [audio, setAudio] = useState(false)
     const [time, setTime] = useState(5)
+
+    const router = useRouter();
 
     const [formData, setFormData] = useState({
         prompt: '',
@@ -29,9 +44,33 @@ export default function Page() {
         setFormData(newFormData)
     }
 
-
     const onSubmit = () => {
-        console.log(formData)
+        let finalPrompt = gptPrimer + " " + hcpPrimer;
+        if (formData.prompt === 'Mindfulness') {
+            finalPrompt += mindfulnessPrompt;
+        }
+        if (formData.prompt === 'Stress Reduction') {
+            finalPrompt += stressReductionPrompt;
+        }
+        if (formData.prompt === 'Anxiety Reduction') {
+            finalPrompt += anxietyReductionPrompt;
+        }
+        if (formData.prompt === 'Compassion Fatigue') {
+            finalPrompt += compassionFatiguePrompt;
+        }
+        if (formData.prompt === 'Resilience') {
+            finalPrompt += resiliencePrompt;
+        }
+
+        finalPrompt += timePrompt + formData.time + " minutes.";
+        const response = callChatGPT(finalPrompt)
+
+        router.push({
+            pathname: '(hcp)/hcp-meditations/meditation',
+            params: { response: response },
+        });
+
+        // Direct to next page .....
     }
 
     const styles = StyleSheet.create({

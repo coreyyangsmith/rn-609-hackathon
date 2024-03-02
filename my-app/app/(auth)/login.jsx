@@ -24,6 +24,29 @@ export default function TabOneScreen() {
     if (field === "password") setPasswordData(text);
   };
 
+    const handleSignIn = async () => {
+        try {
+            const response = await fetch("http://localhost:3001/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username: usernameData, password: passwordData }),
+            });
+
+            if (response.ok) {
+                // Handle successful login
+                signIn(); // Example function to handle successful login
+            } else {
+                // Handle unsuccessful login
+                console.error("Failed to login:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            // Handle network errors or other exceptions
+        }
+    };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
@@ -50,7 +73,7 @@ export default function TabOneScreen() {
         mode="outlined"
         value={passwordData}
         onChangeText={(text) => {
-          handleFormDataChange("password"), text;
+          handleFormDataChange("password", text);
         }}
       />
       <View
@@ -58,7 +81,7 @@ export default function TabOneScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <Button title="Sign In" color={"orange"} onPress={signIn} />
+      <Button title="Sign In" color={"orange"} onPress={handleSignIn} />
       <Button
         title="Register"
         color={"orange"}

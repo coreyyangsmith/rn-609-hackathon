@@ -31,6 +31,7 @@ export const register = withDatabase(
 // }
 export const login = withDatabase(
     asyncHandler(async (req, res, next) => {
+        update-backend
         const { user_id, password } = req.body;
 
         // Query database for user with the given user_id
